@@ -1,55 +1,79 @@
 /*
-*   Polymorphism example about mathematical operations
+ *   Polymorphism example about mathematical operations
  */
 
-class MathematicalOperations{
+class MathematicalOperations {
     // Define 2 constant integer values
-    final protected static int num1= 10;
-    final protected int num2 = 15;
+    protected double num1 = 10;
+    protected double num2 = 15;
+    protected double operationResult;
 
-    public void result(){
-        System.out.println("Mathematical operations results for num1= "+num1+" and num2= "+num2+"\n");
+    public MathematicalOperations() {
+    }
+
+    public MathematicalOperations(double num1, double num2) {
+        this.num1 = num1;
+        this.num2 = num2;
+    }
+
+    public double result() {
+        return 0;
     }
 }
-class Multiplication extends MathematicalOperations{
+
+
+class Multiplication extends MathematicalOperations {
 
     @Override
-    public void result() {
-    System.out.println("Multiplication result= "+(num1*num2));
+    public double result() {
+        return operationResult = num1 * num2;
     }
 }
 
-class Summation extends MathematicalOperations{
+
+class Summation extends MathematicalOperations {
+
     @Override
-    public void result() {
-        System.out.println("Summation result= "+(num1+num2));
+    public double result() {
+        return operationResult = num1 + num2;
     }
 }
 
-class Subtraction extends MathematicalOperations{
+
+class Subtraction extends MathematicalOperations {
+
     @Override
-    public void result() {
-        System.out.println("Subtraction result= "+(num1-num2));
+    public double result() {
+        return operationResult = num1 - num2;
     }
 }
+
+
+class ResultPrinter {
+    void print(double result) {
+        System.out.println("Result= " + result);
+    }
+
+}
+
 
 public class Main {
 
     public static void main(String[] args) {
 
         // Create object for superclass
-        MathematicalOperations mathOp = new MathematicalOperations();
+        MathematicalOperations mathOp = new MathematicalOperations(10, 15);
         mathOp.result();
 
         // Create objects for subclasses
         MathematicalOperations summation = new Summation();
         MathematicalOperations subtraction = new Subtraction();
         MathematicalOperations multiplication = new Multiplication();
+        ResultPrinter resPrinter = new ResultPrinter();
 
-        // Print mathematical operations result
-        summation.result();
-        subtraction.result();
-        multiplication.result();
+        resPrinter.print(summation.result());
+        resPrinter.print(subtraction.result());
+        resPrinter.print(multiplication.result());
 
     }
 }
